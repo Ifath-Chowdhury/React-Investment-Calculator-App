@@ -41,23 +41,25 @@
   font-size: 1rem;
 }
 
-table {
+#result {
   width: 100%;
   border-collapse: collapse;
+  max-width: 800px;
   margin-top: 2rem;
 }
 
-th, td {
+#result-head {
+  background-color:rgb(18, 25, 32);
+  color: #34495e;
+}
+
+#result th, #result td {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 0.5rem;
   text-align: right;
 }
 
-th {
-  background-color: #f2f2f2;
-  font-weight: bold;
-}
 
-tr:nth-child(even) {
+#result tbody tr:nth-child(even) {
   background-color: #f9f9f9;
 }
