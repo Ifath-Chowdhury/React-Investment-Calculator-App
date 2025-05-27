@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import '../App.css'
+import OutputData from './OutputData.jsx'
 
-const UserInput = () => {
+const UserInput = ( {onInputChange} ) => {
   const [userInput, setUserInput] = useState({
     initialInvestment: 10000,
     annualInvestment: 1200,
@@ -68,6 +69,8 @@ const UserInput = () => {
             />
           </div>
         </form>
+
+        <OutputData inputValue={userInput}/>
     </section>
   ) 
 }
