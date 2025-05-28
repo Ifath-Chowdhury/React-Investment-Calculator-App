@@ -10,30 +10,37 @@ const UserInput = ( {onInputChange} ) => {
     duration: 10
   });
 
+  let error = false;
+
   const handleChange = (inputIdentifier, newValue) => {
     let newInput = userInput;
-    if (inputIdentifier == "initialInvestment") {
-      newInput = {...userInput, initialInvestment: newValue};
-    } else if (inputIdentifier == "annualInvestment") {
-      newInput = {...userInput, annualInvestment: newValue};
-    } else if (inputIdentifier == "expectedReturn") {
-      newInput = {...userInput, expectedReturn: newValue};
-    } else if (inputIdentifier == "duration") {
-      newInput = {...userInput, duration: newValue};
-    }
+    if (newValue > 0) {
+      if (inputIdentifier == "initialInvestment") {
+        newInput = {...userInput, initialInvestment: newValue};
+      } else if (inputIdentifier == "annualInvestment") {
+        newInput = {...userInput, annualInvestment: newValue};
+      } else if (inputIdentifier == "expectedReturn") {
+        newInput = {...userInput, expectedReturn: newValue};
+      } else if (inputIdentifier == "duration") {
+        newInput = {...userInput, duration: newValue};
+      }
 
-    setUserInput(newInput);
-    console.log(userInput);
+      setUserInput(newInput);
+      error = false;
+    } else {
+      error = true;
+    }
   };
 
   return(
-    <section id='user-input'>
-        <form>
+    <section className='report-content'>
+        <form id='user-input'>
           <div className="input-group">
             <label htmlFor="initialInvestment">Initial Investment ($)</label>
             <input 
               type="number" 
               id="initialInvestment"
+              min='0'
               value={userInput.initialInvestment}
               onChange={(e) => handleChange('initialInvestment', e.target.value)}
             />
@@ -44,6 +51,7 @@ const UserInput = ( {onInputChange} ) => {
             <input 
               type="number" 
               id="annualInvestment"
+              min='0'
               value={userInput.annualInvestment}
               onChange={(e) => handleChange('annualInvestment', e.target.value)}
             />
@@ -54,6 +62,7 @@ const UserInput = ( {onInputChange} ) => {
             <input 
               type="number" 
               id="expectedReturn"
+              min='0'
               value={userInput.expectedReturn}
               onChange={(e) => handleChange('expectedReturn', e.target.value)}
             />
@@ -64,13 +73,14 @@ const UserInput = ( {onInputChange} ) => {
             <input 
               type="number" 
               id="duration"
+              min='0'
               value={userInput.duration}
               onChange={(e) => handleChange('duration', e.target.value)}
             />
           </div>
         </form>
 
-        <OutputData inputValue={userInput}/>
+        {error ? <h1>All values must be above 0</h1> : <OutputData inputValue={userInput} />}
     </section>
   ) 
 }

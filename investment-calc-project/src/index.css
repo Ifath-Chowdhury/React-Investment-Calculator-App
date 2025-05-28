@@ -41,6 +41,12 @@
   font-size: 1rem;
 }
 
+.report-content {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #result {
   width: 100%;
   border-collapse: collapse;
@@ -48,9 +54,9 @@
   margin-top: 2rem;
 }
 
-#result-head {
+#result thead {
   background-color:rgb(18, 25, 32);
-  color: #34495e;
+  color: white;
 }
 
 #result th, #result td {
@@ -62,4 +68,12 @@
 
 #result tbody tr:nth-child(even) {
   background-color: #f9f9f9;
+}
+
+button {
+  margin: 15px;
+  background-color: #f0f0f0;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100px;
 }
